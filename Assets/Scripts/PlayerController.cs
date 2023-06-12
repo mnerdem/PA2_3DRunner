@@ -17,9 +17,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SwipeCheck();
+
+    }
+
+    void SwipeCheck()
+    {
         float newX = 0;
         float touchXDelta = 0;
-        
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             //Debug.Log(Input.GetTouch(0).deltaPosition.x / Screen.width);
@@ -31,7 +37,7 @@ public class PlayerController : MonoBehaviour
         }
 
         newX = transform.position.x + xSpeed * touchXDelta * Time.deltaTime; //sola saða hareket
-        newX = Mathf.Clamp(newX, -limitx , limitx);
+        newX = Mathf.Clamp(newX, -limitx, limitx);
 
         Vector3 newPosition = new Vector3(newX, transform.position.y, transform.position.z + runningSpeed * Time.deltaTime);
         transform.position = newPosition;
